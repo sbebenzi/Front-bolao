@@ -21,6 +21,6 @@ export default function Home(props: HomeProps) {//tá dizendo que props segue a 
     props:{
       qtdpools: data.qtdpools,
     }
- 
+ //teste
    }
 }
