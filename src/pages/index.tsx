@@ -6,12 +6,11 @@
 //  jsx = javascript + xml (xmp é o q tá por tras do html)
 // react nada mais é do que uma forma de vc dividir sua aplicacao em varias partes menores
 import Image from 'next/image'//importa lugar para botar Image para o next (é só substituir a tag img por Image)
-import imageBackround from '../assets/campo_background.png'
 import iconeUsuario from '../assets/imUsu.png'
 import logo from '../assets/logo.png'
 import check from '../assets/check.png'
 
-export default function Home() {//tá dizendo que props segue a tipagem do homeProps
+export default function Home() {
 
   return (
    <div>
