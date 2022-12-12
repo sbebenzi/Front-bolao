@@ -6,21 +6,21 @@
 //  jsx = javascript + xml (xmp é o q tá por tras do html)
 // react nada mais é do que uma forma de vc dividir sua aplicacao em varias partes menores
 import Image from 'next/image'//importa lugar para botar Image para o next (é só substituir a tag img por Image)
-import iconeUsuario from '../assets/imUsu.png'
+import iconeUsuario from '../assets/usuario.png'
 import logo from '../assets/logo.png'
 import check from '../assets/check.png'
 
 export default function Home() {
 
   return (
-   <div>
+   <div className= "max-w-[1124px] h-screen mx-auto grid grid-cols-2 items-center">
     <main>
       <Image src={logo} alt = "logo"/>
 
-      <h1>Crie seu pròrprio bolão da copa e compartilhe entre amigos!</h1>
+      <h1 className="mt-14 text-5xl text-white-1 font-bold leading-tight">Crie seu pròrprio bolão da copa e compartilhe entre amigos!</h1>
     
     <div>
-      <Image src={iconeUsuario} alt=""/>
+      <Image src={iconeUsuario} alt="" className="border-solid rounded-full bg-white-1 max-w-[70px] max-h-[70px]"/>
       <strong>
         <span>+12.592</span> pessoas jé estao usando 
       </strong>
