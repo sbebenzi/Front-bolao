@@ -17,19 +17,28 @@ export default function Home() {
     <main>
       <Image src={logo} alt = "logo"/>
 
-      <h1 className="mt-14 text-5xl text-white-1 font-bold leading-tight">Crie seu pròrprio bolão da copa e compartilhe entre amigos!</h1>
+      <h1 className="mt-14 text-5xl text-white-900 font-bold leading-tight">Crie seu prórprio bolão da copa e compartilhe entre amigos!</h1>
     
-    <div>
-      <Image src={iconeUsuario} alt="" className="border-solid rounded-full bg-white-1 max-w-[70px] max-h-[70px]"/>
-      <strong>
-        <span>+12.592</span> pessoas jé estao usando 
+    <div className="mt-10 flex items-center gap-2">
+      <Image src={iconeUsuario} alt="" className="border-solid rounded-full bg-white-1 max-w-[60px] max-h-[60px]"/>
+      <strong className="text-gray-100 text-[20px]">
+        <span className="text-green-500">+12.592</span> pessoas jé estao usando 
       </strong>
     </div>
 
-    <form >
-      <input type="text" required placeholder='Qual nome do seu boão?' />
-      <button type='submit'>Criar Bolao</button>
+    <form className="mt-10 flex gap-2">
+      <input 
+      className="flex-1 px-6 py-4 rounded-[4px] bg-gray-600 border border-gray-800 text-sm"
+      type="text" required 
+      placeholder='Qual nome do seu boão?' 
+      />
+      <button
+      className="bg-yellow-500 px-6 py-4 rounded-[4px] font-bold text-gray-900 text-sm uppercase hover:bg-yellow-700" 
+      type='submit'
+      >
+        Criar Bolao</button>
     </form>
+    <p className="mt-4 text-sm text-gray-300">Após criar seu boão, voce receberá um codigo unico que poderá usar para convidar outras pessoas</p>
 
     <div>
       <div>
@@ -40,14 +49,14 @@ export default function Home() {
         </div>
       </div>
       <div>
-      <Image src={check} alt= ""/>
-      <span>+192.847</span>
+        <Image src={check} alt= ""/>
+          <span>+192.847</span>
           <span>Palpites enviados</span> 
       </div>
     </div>
     </main>
 
-   </div>
+  </div>
     )
 
 } 
