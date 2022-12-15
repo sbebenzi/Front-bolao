@@ -13,10 +13,8 @@ import check from '../assets/check.png'
 export default function Home() {
 
   return (
-   <div className= "max-w-[1124px] h-screen mx-auto grid grid-cols-2 items-center">
-    <main>
-      <Image src={logo} alt = "logo"/>
-
+   <div className= "max-w-[1124px] h-screen mx-auto grid grid-cols-2 items-center gap-4">
+    <main>   
       <h1 className="mt-14 text-5xl text-white-900 font-bold leading-tight">Crie seu prórprio bolão da copa e compartilhe entre amigos!</h1>
     
     <div className="mt-10 flex items-center gap-2">
@@ -38,24 +36,28 @@ export default function Home() {
       >
         Criar Bolao</button>
     </form>
-    <p className="mt-4 text-sm text-gray-300">Após criar seu boão, voce receberá um codigo unico que poderá usar para convidar outras pessoas</p>
+    <p className="mt-4 text-sm text-gray-300 leading-relaxed">Após criar seu boão, voce receberá um codigo unico que poderá usar para convidar outras pessoas</p>
 
-    <div>
-      <div>
-        <Image src={check} alt= ""/>
-        <div>
-          <span>+2.034</span>
+    <div className="mt-10  pt-10 border-t border-gray-800 items-center justify-between flex text-gray-100">
+      <div className="flex items-center gap-6">
+        <Image  className="max-w-xs" src={check} alt= ""/>
+        <div className="flex flex-col" >
+          <span className="text-[24px] font-bold">+2.034</span>
           <span>Bolões criados</span>
         </div>
       </div>
-      <div>
+      <div className="w-px h-14 bg-gray-800"/>
+     
+      <div className="flex items-center gap-6">
         <Image src={check} alt= ""/>
-          <span>+192.847</span>
+        <div className="flex flex-col">
+          <span className="text-[24px] font-bold ">+192.847</span>
           <span>Palpites enviados</span> 
+          </div>     
       </div>
     </div>
     </main>
-
+    <Image className="max-w-lg mx-16" src={logo} alt = "logo"/>
   </div>
     )
 
