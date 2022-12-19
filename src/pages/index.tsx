@@ -30,6 +30,8 @@ async function createPool(event:FormEvent){
       await navigator.clipboard.writeText(code)// faz o codigo do bolao ficar no copiar 
 
       alert('bolao criado com sucesso, o código foi copiado com trasferência')
+    
+       setPooltitle('')
     }catch{
        alert('falha ao criar o bolão tente novamente em alguns instantes')
     }
@@ -53,6 +55,7 @@ async function createPool(event:FormEvent){
       type="text" required 
       placeholder='Qual nome do seu boão?' 
       onChange = {event => setPooltitle(event.target.value)}
+      value={pooltitle}
       />
       <button
       className="bg-yellow-500 px-6 py-4 rounded-[4px] font-bold text-gray-900 text-sm uppercase hover:bg-yellow-700" 
@@ -86,7 +89,7 @@ async function createPool(event:FormEvent){
     )
 
 } 
-  export const getServerSideProps =async () => {
+  export const getServerSideProps = async () => {
    const countPoolResponse = await api.get('count/pools')    // faz a requisicao lá p back
    const countGessesResponse = await api.get('count/guesses')
    const countUsersResponse = await api.get('/count/users')
