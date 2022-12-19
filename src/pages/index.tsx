@@ -2,6 +2,7 @@
 interface HomeProps{ //tipo da constante
   qtdpools : number
   qtdGuesses: number
+  qtdUsers: number
 }
 
 //  jsx = javascript + xml (xmp é o q tá por tras do html)
@@ -11,8 +12,28 @@ import iconeUsuario from '../assets/usuario.png'
 import logo from '../assets/logo.png'
 import check from '../assets/check.png'
 import { api } from '../lib/axios'
+import { FormEvent, useState } from 'react'
 
 export default function Home(props: HomeProps) {
+const [pooltitle, setPooltitle] = useState('')
+
+async function createPool(event:FormEvent){
+     event.preventDefault()
+
+    try{
+      const response = await api.post('/pools/create',{
+        title:pooltitle,
+         
+       })
+
+       const {code} = response.data 
+      await navigator.clipboard.writeText(code)// faz o codigo do bolao ficar no copiar 
+
+      alert('bolao criado com sucesso, o código foi copiado com trasferência')
+    }catch{
+       alert('falha ao criar o bolão tente novamente em alguns instantes')
+    }
+  }
 
   return (
    <div className= "max-w-[1124px] h-screen mx-auto grid grid-cols-2 items-center gap-4">
@@ -22,15 +43,16 @@ export default function Home(props: HomeProps) {
     <div className="mt-10 flex items-center gap-2">
       <Image src={iconeUsuario} alt="" className="border-solid rounded-full bg-white-1 max-w-[60px] max-h-[60px]"/>
       <strong className="text-gray-100 text-[20px]">
-        <span className="text-green-500">+12.592</span> pessoas jé estao usando 
+        <span className="text-green-500">+{props.qtdUsers}</span> pessoas jé estao usando 
       </strong>
     </div>
 
-    <form className="mt-10 flex gap-2">
+    <form onSubmit= {createPool} className="mt-10 flex gap-2">
       <input 
-      className="flex-1 px-6 py-4 rounded-[4px] bg-gray-600 border border-gray-800 text-sm"
+      className="flex-1 px-6 py-4 rounded-[4px] bg-gray-600 border text-gray-100 border-gray-800 text-sm"
       type="text" required 
       placeholder='Qual nome do seu boão?' 
+      onChange = {event => setPooltitle(event.target.value)}
       />
       <button
       className="bg-yellow-500 px-6 py-4 rounded-[4px] font-bold text-gray-900 text-sm uppercase hover:bg-yellow-700" 
@@ -67,11 +89,13 @@ export default function Home(props: HomeProps) {
   export const getServerSideProps =async () => {
    const countPoolResponse = await api.get('count/pools')    // faz a requisicao lá p back
    const countGessesResponse = await api.get('count/guesses')
+   const countUsersResponse = await api.get('/count/users')
    //retorna como propriedades o dado
    return{
     props:{
       qtdpools: countPoolResponse.data.qtdpools,//qtdpools é o que eu to retornando lá no back <3
-      qtdGuesses: countGessesResponse.data.qtdGuess 
+      qtdGuesses: countGessesResponse.data.qtdGuess,
+      qtdUsers: countUsersResponse.data.qtdUsers 
     }
  //teste
    }
