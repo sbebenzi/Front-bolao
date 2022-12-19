@@ -1,7 +1,8 @@
 
-// interface HomeProps{ //tipo da constante
-//   qtdpools : number
-// }
+interface HomeProps{ //tipo da constante
+  qtdpools : number
+  qtdGuesses: number
+}
 
 //  jsx = javascript + xml (xmp é o q tá por tras do html)
 // react nada mais é do que uma forma de vc dividir sua aplicacao em varias partes menores
@@ -9,8 +10,9 @@ import Image from 'next/image'//importa lugar para botar Image para o next (é s
 import iconeUsuario from '../assets/usuario.png'
 import logo from '../assets/logo.png'
 import check from '../assets/check.png'
+import { api } from '../lib/axios'
 
-export default function Home() {
+export default function Home(props: HomeProps) {
 
   return (
    <div className= "max-w-[1124px] h-screen mx-auto grid grid-cols-2 items-center gap-4">
@@ -42,7 +44,7 @@ export default function Home() {
       <div className="flex items-center gap-6">
         <Image  className="max-w-xs" src={check} alt= ""/>
         <div className="flex flex-col" >
-          <span className="text-[24px] font-bold">+2.034</span>
+          <span className="text-[24px] font-bold">+{props.qtdpools}</span>
           <span>Bolões criados</span>
         </div>
       </div>
@@ -51,7 +53,7 @@ export default function Home() {
       <div className="flex items-center gap-6">
         <Image src={check} alt= ""/>
         <div className="flex flex-col">
-          <span className="text-[24px] font-bold ">+192.847</span>
+          <span className="text-[24px] font-bold ">+{props.qtdGuesses}</span>
           <span>Palpites enviados</span> 
           </div>     
       </div>
@@ -62,14 +64,15 @@ export default function Home() {
     )
 
 } 
-//   export const getServerSideProps =async () => {
-//    const response = await fetch('http://localhost:3333/count/pools')    // faz a requisicao lá p back
-//    const data = await response.json() // transforma a requisicao em dados
-//    //retorna como propriedades o dado
-//    return{
-//     props:{
-//       qtdpools: data.qtdpools,
-//     }
-//  //teste
-//    }
-// }
+  export const getServerSideProps =async () => {
+   const countPoolResponse = await api.get('count/pools')    // faz a requisicao lá p back
+   const countGessesResponse = await api.get('count/guesses')
+   //retorna como propriedades o dado
+   return{
+    props:{
+      qtdpools: countPoolResponse.data.qtdpools,//qtdpools é o que eu to retornando lá no back <3
+      qtdGuesses: countGessesResponse.data.qtdGuess 
+    }
+ //teste
+   }
+}
